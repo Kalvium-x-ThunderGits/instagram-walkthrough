@@ -1,0 +1,8 @@
+{
+    "name": "instagram-webapp",
+    "private": true,
+    "scripts": {
+      "frontend": "cd frontend && npm i && npm start",
+      "backend": "cd backend && npm i && node start"
+    }
+  }
