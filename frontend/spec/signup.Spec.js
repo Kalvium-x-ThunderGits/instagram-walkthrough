@@ -3,7 +3,7 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jasmine-dom";
 import { BrowserRouter } from "react-router-dom";
 import SignUp from "../src/pages/SignUp";
-const API_URL = window.location.origin.replace("3000","5000")
+const API_URL = window.location.origin.replace("3000", "5000")
 
 describe("SignUp component tests", () => {
   beforeEach(() => {
@@ -28,7 +28,7 @@ describe("SignUp component tests", () => {
     window.fetch.calls.reset();
   });
 
- 
+
   it("[REQ001]_renders_SignUp_form_with_all_necessary_fields", () => {
     render(
       <BrowserRouter>
@@ -55,7 +55,7 @@ describe("SignUp component tests", () => {
     fireEvent.change(screen.getByPlaceholderText(/Full Name/i), { target: { value: "John Doe" } });
     fireEvent.change(screen.getByPlaceholderText(/Email/i), { target: { value: "geekyjha@gmail.com" } });
     fireEvent.change(screen.getByPlaceholderText(/Username/i), { target: { value: "johndoe" } });
-    fireEvent.change(screen.getByPlaceholderText(/Password/i), { target: { value: "StrongPassword#123" } });
+    fireEvent.change(screen.getByPlaceholderText(/Password/i), { target: { value: "m789456123M@" } });
 
     // Submit the form
     fireEvent.click(screen.getByRole("button", { name: /Sign Up/i }));
@@ -78,7 +78,7 @@ describe("SignUp component tests", () => {
     fireEvent.change(screen.getByPlaceholderText(/Full Name/i), { target: { value: "John Doe" } });
     fireEvent.change(screen.getByPlaceholderText(/Email/i), { target: { value: "geekyjha@gmail.com" } });
     fireEvent.change(screen.getByPlaceholderText(/Username/i), { target: { value: "johndoe" } });
-    fireEvent.change(screen.getByPlaceholderText(/Password/i), { target: { value: "StrongPassword#123" } });
+    fireEvent.change(screen.getByPlaceholderText(/Password/i), { target: { value: "m789456123M@" } });
 
     // Submit the form
     fireEvent.click(screen.getByRole("button", { name: /Sign Up/i }));
@@ -96,9 +96,33 @@ describe("SignUp component tests", () => {
         username: "johndoe",
         fullname: "John Doe",
         email: "geekyjha@gmail.com",
-        password: "StrongPassword#123",
-        
+        password: "m789456123M@",
+
       }),
     });
   });
+  it("[REQ007]__display_an_error_message_for_invalid_password", async () => {
+    render(
+      <BrowserRouter>
+        <SignUp />
+      </BrowserRouter>
+    );
+
+
+    // Fill out the form
+    fireEvent.change(screen.getByPlaceholderText(/Full Name/i), { target: { value: "John Doe" } });
+    fireEvent.change(screen.getByPlaceholderText(/Email/i), { target: { value: "geekyjha@gmail.com" } });
+    fireEvent.change(screen.getByPlaceholderText(/Username/i), { target: { value: "johndoe" } });
+    fireEvent.change(screen.getByPlaceholderText(/Password/i), { target: { value: "short" } });
+
+    // Submit the form
+    fireEvent.click(screen.getByRole("button", { name: /Sign Up/i }));
+
+    // Wait for the form submission to complete
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    // Assert that the success message is displayed
+    expect(screen.getByText("Password must contain at least 8 characters, including at least 1 number and 1 includes both lower and uppercase letters and special characters for example #,?,!")).toBeTruthy();
+  });
+
 });
