@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import logo from "../img/logo.png"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 const API_URL = window.location.origin.replace("3000", "5000")
+
 
 
 export default function SignUp() {
@@ -10,6 +14,7 @@ export default function SignUp() {
     const [email, setEmail] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const navigate = useNavigate()
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -50,6 +55,7 @@ export default function SignUp() {
                 setPassword("")
                 setUsername("")
                 console.log(data)
+                navigate("/signin")
             } else {
                 toast.error(data.error)
             }
@@ -97,7 +103,7 @@ export default function SignUp() {
                         </div>
                         <button className="flex items-center justify-center w-full bg-blue-800 hover:bg-blue-900 text-white font-semibold py-2 rounded-md focus:outline-none focus:ring focus:borde-blue=300">Continue With Google </button>
                         <div className="mt-4 text-center text-gray-700">
-                            <p>Have an account? <a href="">Log In </a></p>
+                            <p>Have an account? <Link to={`/signin`}>Log In</Link></p>
                         </div>
 
                     </div>
