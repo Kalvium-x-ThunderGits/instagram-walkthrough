@@ -1,59 +1,90 @@
-Here's a README section for Milestone 1, detailing the initial setup:
+# Instagram Clone - Milestone 1
 
----
+This README file provides an overview of the progress made in Milestone 1 of the Instagram Clone project. It includes details on the technologies used, topics covered, test cases, and instructions on how to run the code and tests.
 
-## Milestone 1: Initial Setup
+## Table of Contents
+- [Technologies Used](#technologies-used)
+- [Topics Covered](#topics-covered)
+- [Test Cases](#test-cases)
+- [Running the Code](#running-the-code)
+  - [Frontend](#frontend)
+  - [Backend](#backend)
+- [Running the Tests](#running-the-tests)
+  - [Frontend Tests](#frontend-tests)
+  - [Backend Tests](#backend-tests)
 
-In this milestone, we set up the initial development environment for our Instagram clone project using ReactJS, Node.js, Express.js, SQL, and TailwindCSS. This includes configuring the project structure, installing necessary dependencies, and setting up basic configurations.
+## Technologies Used
+- **React**: Frontend library for building user interfaces.
+- **Express**: Backend web application framework for Node.js.
+- **SQLite**: Lightweight, disk-based database.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
+- **Jasmine**: Testing framework for JavaScript.
 
-### Tasks Completed
+## Topics Covered
+### Frontend
+- Creation of the UI for the Signup form using React and Tailwind CSS.
 
-1. **Project Initialization:**
-   - Created the project directory structure for frontend .
-   - Initialized `package.json` files for frontend 
+## Test Cases
+### Jasmine Test Cases Passed
+#### Frontend
+1. **SignUp Component**
+   - **[REQ001]**: Renders SignUp form with all necessary fields.
+   - **[REQ002]**: Registers a new user and displays a success message.
 
-2. **Frontend Setup:**
-   - Installed ReactJS and TailwindCSS.
-   - Configured TailwindCSS .
-   - Created initial React component
-   - Configured StackBlitz for online development and demonstration.
-
-
-3. **Testing Setup:**
-   - Installed Jasmine for testing.
-   - Configured initial test cases for frontend components.
-
-### Steps to Reproduce
-
-1. **Clone the repository:**
-
-   ```bash
-   git clone https://github.com/Kalvium-x-ThunderGits/instagram-walkthrough.git
-   cd instagram-clone
-   ```
-
-2. **Install dependencies:**
-
-   ```bash
-   # Install frontend dependencies
-   cd ../frontend
-   npm install
-   ```
-
-3. **Start the frontend development server:**
-
+## Running the Code
+### Frontend
+1. Navigate to the frontend directory:
    ```bash
    cd frontend
+   ```
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
    npm start
    ```
+   The frontend application should now be running on `http://localhost:3000`.
 
-4. **Access the application:**
+### Backend
+1. Navigate to the backend directory:
+   ```bash
+   cd backend
+   ```
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the Express server:
+   ```bash
+   node app 
+   ```
+   The backend server should now be running on `http://localhost:5000`.
 
-   Open your browser and navigate to `http://localhost:3000`.
+## Running the Tests
+### Frontend Tests
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
+2. Run the tests:
+   ```bash
+   npm run test:serve
+   ```
+   This will run the Jasmine test cases for the frontend components.
 
-### Next Steps
-
-In the next milestone, we will focus on creating the registration page using ReactJS and TailwindCSS, and writing Jasmine tests to ensure proper validation. Stay tuned for the detailed walkthrough of the registration feature implementation.
+### Backend Tests
+1. Navigate to the backend directory:
+   ```bash
+   cd backend
+   ```
+2. Run the tests:
+   ```bash
+   npx jasmine
+   ```
+   This will run the Jasmine test cases for the backend API endpoints.
 
 ---
 
+Congratulations on completing Milestone 1 of the Instagram Clone project! Continue to the next milestone for further development and enhancements.
