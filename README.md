@@ -1,118 +1,103 @@
-
-
-## Milestone 2: Backend Endpoint for User Registration
-
-In this milestone, we set up the backend endpoint for user registration. This involves creating the necessary API route, connecting to the database, and ensuring proper validation and error handling.
-
-### Tasks Completed
-
-1. **User Model:**
-   - Defined the User model with fields for username, email, and password.
-   - Added validation for required fields and email format.
-
-2. **Registration Endpoint:**
-   - Created the `/api/register` endpoint in the backend.
-   - Implemented request validation to ensure all required fields are provided and valid.
-   - Added password hashing for security using bcrypt.
-   - Connected to the database to save the new user record.
-
-3. **Error Handling:**
-   - Implemented error handling for common scenarios such as missing fields, invalid email format, and duplicate email registration.
-   - Provided meaningful error messages in the response.
-
-4. **Testing:**
-   - Added Jasmine tests to validate the registration process.
-   - Ensured tests cover successful registration, validation errors, and duplicate email scenarios.
-
-### Steps to Reproduce
-
-1. **Clone the repository:**
-
-   ```bash
-   git clone https://github.com/yourusername/instagram-clone.git
-   cd instagram-clone
-   ```
-
-2. **Install dependencies:**
-
-   ```bash
-   # Install backend dependencies
-   cd backend
-   npm install
-   ```
-
-3. **Set up the database:**
-
-   - Ensure your PostgreSQL or MySQL database is running.
-   - Update the database connection details in `backend/config/database.js`.
-
-4. **Environment variables:**
-
-   - Ensure your `.env` file in the `backend` directory includes:
-
-     ```env
-     DATABASE_URL=your_database_url
-     JWT_SECRET=your_jwt_secret
-     ```
-
-5. **Start the backend server:**
-
-   ```bash
-   cd backend
-   npm start
-   ```
-
-6. **Testing the Registration Endpoint:**
-
-   - Use a tool like Postman to send a POST request to `http://localhost:5000/api/register` with the following JSON body:
-
-     ```json
-     {
-       "username": "testuser",
-       "email": "testuser@example.com",
-       "password": "SecurePass123"
-     }
-     ```
-
-   - Verify that the response indicates a successful registration, or provides an appropriate error message.
-
-7. **Run backend tests:**
-
-   ```bash
-   cd backend
-   npm test
-   ```
-
-### API Endpoint
-
-**POST /api/register**
-
-- **Request Body:**
-  ```json
-  {
-    "username": "string",
-    "email": "string",
-    "password": "string"
-  }
-  ```
-
-- **Response:**
-  - Success: 
-    ```json
-    {
-      "message": "User registered successfully"
-    }
-    ```
-  - Error: 
-    ```json
-    {
-      "error": "Error message"
-    }
-    ```
-
-### Next Steps
-
-In the next milestone, we will set up the frontend registration form and connect it to our backend registration endpoint. We will also implement validation logic on the frontend to provide a seamless user experience.
+Here's a `README.md` file tailored for Milestone 2 of the Instagram clone project:
 
 ---
 
+# Instagram Clone - Milestone 2
+
+## Overview
+
+In Milestone 2, we have focused on developing and testing the backend APIs for user registration in the Instagram clone project. The backend is built using ExpressJS and NodeJS, with SQLite as the database. We use Jasmine for unit testing the backend, while the frontend is developed using ReactJS with Tailwind CSS for styling.
+
+## Topics Covered in Milestone 2
+
+- **Backend API Development**: Created RESTful APIs for user registration.
+- **Database Integration**: Configured SQLite database for storing user data.
+- **Testing**: Implemented Jasmine test cases to ensure the correctness of the registration functionality.
+
+## Backend APIs
+
+The following APIs have been developed in this milestone:
+
+1. **POST /api/users/register**
+   - Registers a new user.
+   - **Request Body**:
+     ```json
+     {
+       "username": "string",
+       "email": "string",
+       "password": "string",
+       "fullname": "string"
+     }
+     ```
+   - **Responses**:
+     - **Success**: `201 Created`
+     - **Failure**: `422 Unprocessable Entity`
+
+## Jasmine Test Cases
+
+The following test cases were implemented and passed for the backend user registration functionality:
+
+- **REQ003_register_new_user_successfully**
+  - Tests that a new user can be registered successfully with valid details.
+
+- **REQ004_not_register_a_user_with_an_existing_email**
+  - Tests that a user cannot be registered if the email already exists in the database.
+
+- **REQ005_not_register_a_user_with_an_existing_username**
+  - Tests that a user cannot be registered if the username already exists in the database.
+
+## Running Backend Test Cases
+
+To run the Jasmine test cases for the backend, follow these steps:
+
+1. **Navigate to the Backend Directory:**
+   ```bash
+   cd backend
+   ```
+
+2. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Run the Tests:**
+   ```bash
+   npm test
+   ```
+
+   This command will execute the Jasmine test suite and output the results in the terminal. Ensure that the backend server is not running while performing tests to avoid conflicts.
+
+## Running the Project
+
+To run the backend server and test the registration API:
+
+1. **Navigate to the Backend Directory:**
+   ```bash
+   cd backend
+   ```
+
+2. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the Server:**
+   ```bash
+   npm start
+   ```
+
+   The server will start on `http://localhost:4000` by default.
+
+## Frontend Integration
+
+The frontend is developed separately using ReactJS and styled with Tailwind CSS. Integration with the backend APIs is done through fetch requests in the React components.
+
+## Conclusion
+
+Milestone 2 has established the foundation for user registration functionality in the Instagram clone project. With the backend APIs implemented and thoroughly tested, the next milestone will focus on integrating these APIs with the frontend and adding more features.
+
+## Contact
+
+For any questions or issues, please contact the development team at [support@instagram-clone.com](mailto:support@instagram-clone.com).
+
+---
