@@ -1,6 +1,4 @@
-Here's a `README.md` file tailored for Milestone 2 of the Instagram clone project:
 
----
 
 # Instagram Clone - Milestone 2
 
