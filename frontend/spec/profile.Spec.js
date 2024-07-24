@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import ProfilePosts from '../src/components/Profile/ProfilePost.js';
+import ProfilePosts from '../src/components/Profile/ProfilePosts.js';
 import ProfileHeader from '../src/components/Profile/ProfileHeader.js';
 import '@testing-library/jasmine-dom'; // Ensure this is correctly set up
 
