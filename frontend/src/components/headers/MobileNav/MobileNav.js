@@ -1,7 +1,18 @@
-import React from "react";
+import React,{useState} from "react";
 import { Link } from "react-router-dom";
 import {FaHome, FaSearch, FaUserFriends, FaUserPlus , FaPlusSquare} from "react-icons/fa"
+import CreatePost from "../../CreatePost/CreatePost";
+
 const MobileNav = ()=>{
+const [isModalOpen,setIsModalOpen] = useState(false);
+
+const openModal= ()=>{
+    setIsModalOpen(true)
+}
+const closeModal= ()=>{
+    setIsModalOpen(false)
+}
+
     const SidebarItems = [
         {
             name:"Seach",
@@ -19,11 +30,7 @@ const MobileNav = ()=>{
             link:"/following",
             icons : <FaUserPlus className = "text-xl" data-testid="FaUserPlus"/>
         },
-        {
-            name:"Create Post",
-            link:"/create",
-            icons : <FaPlusSquare className = "text-xl" data-testid="FaPlusSquare"/>
-        },
+       
         {
             name:"Profile",
             link:"/profile",
@@ -31,13 +38,17 @@ const MobileNav = ()=>{
         }
     ]
     return (
-        <div>
+        <>
+  <div>
  <div className = "w-full h-auto">
     <div className = "w-full h-auto flex items-center gap-px-2">
     <Link to="/" className = "w-full h-auto flex items-center gap-x-4 p-3 bg-transparent hover:bg-gray-300 rounded-md ease-out duration-500 group ">
 <FaHome className = "text-xl" data-testid="FaHome"/>
   
      </Link>  
+     <div className = "w-full h-auto flex items-center gap-x-4 p-3 bg-transparent hover:bg-gray-300 rounded-md ease-out duration-500 group " onClick={openModal}>
+     <FaPlusSquare className = "text-xl" data-testid="FaPlusSquare"/>
+     </div>
 
      {SidebarItems.map((item)=>(
         <Link to={item.link} key={item.name} className = "w-full h-auto flex items-center gap-x-4 p-3 bg-transparent hover:bg-gray-300 rounded-md ease-out duration-500 group ">
@@ -49,6 +60,9 @@ const MobileNav = ()=>{
     </div>
              </div>
         </div>
+        {isModalOpen && <CreatePost closeModal={closeModal}/>}
+        </>
+      
        
     )
 }
