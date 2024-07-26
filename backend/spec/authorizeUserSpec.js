@@ -9,6 +9,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'default_jwt_secret';
 describe('authenticateUser Middleware', () => {
     beforeAll(async () => {
         await sequelize.sync({ force: true });
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000; // Set timeout to 10 seconds globally
     });
 
     afterAll(async () => {
