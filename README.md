@@ -119,8 +119,3 @@ To run the complete application:
 
 Milestone 4 successfully integrates password validation on the frontend and adds a login endpoint to the backend. The implemented Jasmine test cases ensure that both new features work as expected and handle various scenarios appropriately.
 
-## Contact
-
-For questions or support, please contact the development team at [support@instagram-clone.com](mailto:support@instagram-clone.com).
-
----
