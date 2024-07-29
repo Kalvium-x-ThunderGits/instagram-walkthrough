@@ -67,9 +67,3 @@ To run the complete application:
    ```
 
    The frontend application will be available at `http://localhost:3000`.
-
-### **Contact**
-
-For questions or support, please contact the development team at [support@instagram-clone.com](mailto:support@instagram-clone.com).
-
----
