@@ -106,8 +106,3 @@ The frontend is developed separately using ReactJS and styled with Tailwind CSS.
 
 Milestone 2 has successfully established the user registration functionality for the Instagram clone project. The backend APIs are now tested and validated. Future milestones will focus on frontend integration and additional features.
 
-## Contact
-
-For questions or issues, please contact the development team at [support@instagram-clone.com](mailto:support@instagram-clone.com).
-
----
