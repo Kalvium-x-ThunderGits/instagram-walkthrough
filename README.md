@@ -100,9 +100,3 @@ To run the full application:
 ## Conclusion
 
 Milestone 3 successfully integrates the frontend and backend to enable complete user registration functionality. The registration form on the frontend now interacts seamlessly with the backend API, and both frontend and backend functionalities have been tested thoroughly.
-
-## Contact
-
-For questions or issues, please contact the development team at [support@instagram-clone.com](mailto:support@instagram-clone.com).
-
----
