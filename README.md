@@ -37,7 +37,7 @@ To run Jasmine test cases for the frontend:
 
    Use Jasmine to execute the frontend test suite:
    ```bash
-   npx jasmine
+   npm run test:serve
    ```
 
    This command will run the test cases and display the results in your terminal.
@@ -96,8 +96,3 @@ To run the complete application:
 
    The frontend application will be available at `http://localhost:3000`.
 
-### **Contact**
-
-For questions or support, please contact the development team at [support@instagram-clone.com](mailto:support@instagram-clone.com).
-
----
