@@ -35,7 +35,7 @@ To run Jasmine test cases for the frontend:
 
    Execute the Jasmine test suite:
    ```bash
-   npx run test:serve
+   npm run test:serve
    ```
 
    This command will run the Jasmine test cases and provide the results in your terminal.
