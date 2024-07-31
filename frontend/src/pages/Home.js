@@ -7,8 +7,12 @@ import TopNav from "../components/headers/TopNav/TopNav";
 
 export default function Home(){
     return(
+        <>
+         <Link to={'/signin'} className="mt-9" >Sign In </Link>
        
-                <Feed></Feed>
+       <Feed></Feed>
+        </>
+       
 
     )
    

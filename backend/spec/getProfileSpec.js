@@ -58,10 +58,10 @@ describe('Profile API', () => {
         await User.destroy({ truncate: true, cascade: true });
     });
 
-    describe('GET /api/user/profile', () => {
+    describe('GET /api/users/profile', () => {
         it('[REQ029]_fetch_user_profile_successfully', async () => {
             const response = await request(app)
-                .get('/api/user/profile')
+                .get('/api/users/profile')
                 .set('Authorization', `Bearer ${token}`);
 
             expect(response.status).toBe(200);
@@ -78,7 +78,7 @@ describe('Profile API', () => {
 
         it('[REQ030]_fetch_profile_with_invalid_token', async () => {
             const response = await request(app)
-                .get('/api/user/profile')
+                .get('/api/users/profile')
                 .set('Authorization', 'Bearer invalid_token');
 
             expect(response.status).toBe(401);
