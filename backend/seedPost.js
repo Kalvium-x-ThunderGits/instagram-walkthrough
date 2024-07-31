@@ -8,9 +8,9 @@ const seedPosts = async () => {
         const hashPassword = await bcryptjs.hash("password", 10)
         // Create a single user
         const user = await User.create({
-            username: "testuser",
+            username: "demouser",
             fullname: "Test User",
-            email: "testuser@example.com",
+            email: "demo@example.com",
             password: hashPassword
         });
 
