@@ -26,9 +26,9 @@ To run Jasmine test cases for the frontend:
 
 1. **Set Up Your Environment**
 
-   Navigate to the frontend directory and install the necessary dependencies:
+   Navigate to the backend directory and install the necessary dependencies:
    ```bash
-   cd frontend
+   cd backend
    npm install
    ```
 
@@ -36,7 +36,7 @@ To run Jasmine test cases for the frontend:
 
    Execute the Jasmine test suite:
    ```bash
-   npm run test:serve
+   npm run test
    ```
 
    This command will run the Jasmine test cases and provide the results in your terminal.
