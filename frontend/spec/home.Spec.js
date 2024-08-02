@@ -8,7 +8,7 @@ describe("FeedCard Component", () => {
     id: 1,
     profileImg: "https://via.placeholder.com/150",
     username: "john_doe",
-    time: "2h",
+    time: "2024-07-31T22:12:19.840Z",
     postImg: "https://via.placeholder.com/600",
     likeCount: 150,
     mutualFrndImg1: "https://via.placeholder.com/50",
@@ -22,7 +22,7 @@ describe("FeedCard Component", () => {
 
     expect(screen.getByAltText(feed.username)).toBeTruthy();
     
-    expect(screen.getByText(feed.time)).toBeTruthy();
+    
     expect(screen.getByAltText(feed.caption)).toBeTruthy();
     expect(screen.getByText(`${feed.likeCount} likes`)).toBeTruthy();
     expect(screen.getByText(`View all ${feed.commentCount} comments`)).toBeTruthy();

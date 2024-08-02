@@ -1,7 +1,8 @@
 import React from 'react';
-import { render, fireEvent, cleanup } from '@testing-library/react';
+import { render, fireEvent, waitFor, cleanup } from '@testing-library/react';
 import CreatePost from '../src/components/CreatePost/CreatePost';
 import Modal from 'react-modal';
+import { supabase } from '../src/services/supabaseClientMock';
 
 describe('CreatePost component tests', () => {
   let container;
@@ -50,4 +51,36 @@ describe('CreatePost component tests', () => {
 
     expect(closeModal).toHaveBeenCalled();
   });
+
+
+  it('[REQ031]_should_upload_an_image_and_render_it_correctly', async () => {
+    const { getByTestId, getByAltText } = container;
+    const file = new File(['dummy content'], 'example.png', { type: 'image/png' });
+
+    // Mock the URL returned by Supabase
+    const mockPublicUrl = 'http://example.com/images/example.png';
+    supabase.storage.from().upload.and.resolveTo({
+      data: { path: 'example/path' },
+      error: null
+    });
+    supabase.storage.from().getPublicUrl.and.returnValue({
+      data: { publicUrl: mockPublicUrl }
+    });
+
+    // Find the file input element by test ID
+    const input = getByTestId('image-upload');
+    Object.defineProperty(input, 'files', { value: [file] });
+
+    // Trigger file input change
+    fireEvent.change(input);
+
+    // Wait for the image to be rendered
+    await waitFor(() => {
+      const image = getByAltText('Selected');
+      expect(image).toBeTruthy();
+      expect(image.src).toBe(mockPublicUrl);
+    });
+  });
+
+
 });
