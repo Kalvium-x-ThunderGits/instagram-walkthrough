@@ -4,11 +4,12 @@ import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import Profile from "./pages/Profile";
 import AppLayout from "./pages/AppLayout";
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom"
 
 
 
 function App() {
+  const token = localStorage.getItem("token")
 
   return (
     <BrowserRouter>
@@ -16,12 +17,12 @@ function App() {
       <div className="App">
         <Routes>
 
-          <Route path="/" element={<AppLayout />}>
+          <Route path="/" element= {token ? <AppLayout /> : <Navigate to= "/signin"/>}>
             <Route path="/" element={<Home />}></Route>
             <Route path="/profile" element={<Profile />}></Route>
           </Route>
-          <Route path="/signup" element={<SignUp />}></Route>
-          <Route path="/signin" element={<SignIn />}></Route>
+          <Route path="/signup" element={token ?  <Navigate to= "/"/> : <SignUp />}></Route>
+          <Route path="/signin" element={token ?  <Navigate to= "/"/> : <SignIn />}></Route>
         </Routes>
 
       </div>
