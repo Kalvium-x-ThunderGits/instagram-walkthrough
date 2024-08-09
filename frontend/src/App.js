@@ -4,29 +4,40 @@ import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import Profile from "./pages/Profile";
 import AppLayout from "./pages/AppLayout";
-import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom"
+import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
+import { AuthProvider,useAuth } from "./context/AuthContext";
 
+
+function RoutesComponent(){
+  const {isAuthenticated} = useAuth()
+  console.log(isAuthenticated);
+  return(
+    <BrowserRouter>
+
+    <div className="App">
+      <Routes>
+
+        <Route path="/" element= {isAuthenticated ? <AppLayout /> : <Navigate to= "/signin"/>}>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/profile" element={<Profile />}></Route>
+        </Route>
+        <Route path="/signup" element={isAuthenticated ?  <Navigate to= "/"/> : <SignUp />}></Route>
+        <Route path="/signin" element={isAuthenticated ?  <Navigate to= "/"/> : <SignIn />}></Route>
+      </Routes>
+
+    </div>
+  </BrowserRouter>
+  )
+}
 
 
 function App() {
-  const token = localStorage.getItem("token")
+  console.log("I am app");
 
   return (
-    <BrowserRouter>
-
-      <div className="App">
-        <Routes>
-
-          <Route path="/" element= {token ? <AppLayout /> : <Navigate to= "/signin"/>}>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/profile" element={<Profile />}></Route>
-          </Route>
-          <Route path="/signup" element={token ?  <Navigate to= "/"/> : <SignUp />}></Route>
-          <Route path="/signin" element={token ?  <Navigate to= "/"/> : <SignIn />}></Route>
-        </Routes>
-
-      </div>
-    </BrowserRouter>
+  <AuthProvider>
+    <RoutesComponent></RoutesComponent>
+  </AuthProvider>
 
 
   );
