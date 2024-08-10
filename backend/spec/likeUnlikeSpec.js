@@ -35,7 +35,7 @@ describe('Like/Unlike API', () => {
     });
 
     describe('POST /api/posts/like', () => {
-        it('[REQ026]_like_post_successfully', async () => {
+        it('[REQ037]_like_post_successfully', async () => {
             const response = await request(app)
                 .post('/api/posts/like')
                 .set('Authorization', `Bearer ${token}`)
@@ -48,7 +48,7 @@ describe('Like/Unlike API', () => {
             expect(like).not.toBeNull();
         });
 
-        it('[REQ028]_like_post_with_invalid_token', async () => {
+        it('[REQ038]_like_post_with_invalid_token', async () => {
             const response = await request(app)
                 .post('/api/posts/like')
                 .set('Authorization', 'Bearer invalid_token')
@@ -66,7 +66,7 @@ describe('Like/Unlike API', () => {
             await Like.create({ postId: post.id, userId: user.id });
         });
 
-        it('[REQ030]_unlike_post_successfully', async () => {
+        it('[REQ039]_unlike_post_successfully', async () => {
             const response = await request(app)
                 .post('/api/posts/unlike')
                 .set('Authorization', `Bearer ${token}`)
@@ -79,7 +79,7 @@ describe('Like/Unlike API', () => {
             expect(like).toBeNull();
         });
 
-        it('[REQ032]_unlike_post_with_invalid_token', async () => {
+        it('[REQ040]_unlike_post_with_invalid_token', async () => {
             const response = await request(app)
                 .post('/api/posts/unlike')
                 .set('Authorization', 'Bearer invalid_token')
