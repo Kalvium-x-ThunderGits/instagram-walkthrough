@@ -3,6 +3,7 @@ import Modal from "react-modal";
 // import { supabase } from "../../services/supabaseClient";
 import { supabase } from "../../services/supabaseClientMock";
 
+
 Modal.setAppElement(document.getElementById("root"))
 
 const CreatePost = ({ closeModal }) => {
