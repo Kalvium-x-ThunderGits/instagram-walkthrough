@@ -31,7 +31,7 @@ const FeedCard = ({ feed,onLike,onUnlike,currentUserId }) => {
             <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-x-3">
                     <button className="text-black" data-testid="like-button" onClick={()=>{isLikedByCurrentUser ? onUnlike(feed.id) : onLike(feed.id)}}>
-                        {isLikedByCurrentUser ? (<FaHeart className="text-red-500"></FaHeart>) :(<FaRegHeart></FaRegHeart>)
+                        {isLikedByCurrentUser ? (<FaHeart data-testid="filled-heart" className="text-red-500"></FaHeart>) :(<FaRegHeart data-testid="empty-heart"></FaRegHeart>)
 
                         }
                     </button>
