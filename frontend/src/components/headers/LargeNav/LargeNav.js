@@ -41,7 +41,7 @@ const LargeNav = ({openLogOutModal}) => {
         <>
          <div className="w-full h-full relative">
             <Link to="/" className="mb-10 px-2 lg:block sm:hidden md:hidden hidden">
-                <img src={logo} className="w-28 h-auto" alt="Instagram Logo" />
+                <img src="https://kq-storage.s3.ap-south-1.amazonaws.com/logo.png" className="w-28 h-auto" alt="Instagram Logo" />
             </Link>
 
             <div className="w-full h-auto flex items-center flex-col gap-y-2">
