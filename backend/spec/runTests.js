@@ -12,7 +12,7 @@ jasmine.addReporter(new SpecReporter({
 }));
 
 // Import all test files
-require('./userSpec.js'); // replace with your actual test file names
+require('./userSpec.js'); 
 require('./loginUserSpec.js');
 require('./createPostSpec.js');
 require('./authorizeUserSpec.js');
