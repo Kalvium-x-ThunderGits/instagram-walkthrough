@@ -38,6 +38,8 @@ describe('User API - Login', () => {
 
             expect(response.status).toBe(200);
             expect(response.body).toEqual({
+                id: jasmine.any(Number), 
+                username: jasmine.any(String), 
                 token: jasmine.any(String), // Use jasmine.any for object comparison
                 message: 'Login Successfully'
             });
