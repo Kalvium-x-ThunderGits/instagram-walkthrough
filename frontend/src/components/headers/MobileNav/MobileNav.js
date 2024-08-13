@@ -1,17 +1,12 @@
 import React,{useState} from "react";
 import { Link } from "react-router-dom";
 import {FaHome, FaSearch, FaUserFriends, FaUserPlus , FaPlusSquare} from "react-icons/fa"
-import CreatePost from "../../CreatePost/CreatePost";
 
-const MobileNav = ()=>{
-const [isModalOpen,setIsModalOpen] = useState(false);
 
-const openModal= ()=>{
-    setIsModalOpen(true)
-}
-const closeModal= ()=>{
-    setIsModalOpen(false)
-}
+const MobileNav = ({openModal})=>{
+
+
+
 
     const SidebarItems = [
         {
@@ -60,7 +55,7 @@ const closeModal= ()=>{
     </div>
              </div>
         </div>
-        {isModalOpen && <CreatePost closeModal={closeModal}/>}
+        
         </>
       
        

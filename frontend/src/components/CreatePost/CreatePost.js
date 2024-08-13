@@ -6,7 +6,7 @@ import { supabase } from "../../services/supabaseClientMock";
 
 Modal.setAppElement(document.getElementById("root"))
 
-const CreatePost = ({ closeModal }) => {
+const CreatePost = ({ closeModal,updateNewPost }) => {
     const API_URL = window.location.origin.replace("3000", "5000")
     const [selectedImage, setSelectedImage] = useState(null)
     const [caption, setCaption] = useState('')
@@ -39,6 +39,7 @@ const CreatePost = ({ closeModal }) => {
             }
 
             await response.json()
+            updateNewPost()
             closeModal()
 
         }catch(error){
