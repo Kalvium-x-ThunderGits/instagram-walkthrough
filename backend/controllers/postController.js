@@ -1,4 +1,4 @@
-const { Post, User, Like, Comment } = require("../models");
+const { Post, User, Like, Comment, sequelize } = require("../models");
 const { body, validationResult, Result } = require("express-validator");
 
 const validateCreatePost = [
@@ -37,9 +37,20 @@ const getAllPost = async (req, res) => {
                     model: Like,
                     as: "likes",
                     attributes: ["userId"]
+                },
+                {
+                    model: Comment,
+                    as: "comments",
+                    attributes: []
                 }
             ],
-            order: [['createdAt', 'DESC']]
+            order: [['createdAt', 'DESC']],
+            attributes: {
+                include: [
+                    [sequelize.fn("COUNT", sequelize.col("comments.id")), "commentCount"]
+                ]
+            },
+            group: ["Post.id", "postedBy.id"]
         });
         const formattedPosts = posts.map((post) => ({
             id: post.id,
@@ -48,7 +59,7 @@ const getAllPost = async (req, res) => {
             time: post.createdAt,
             postImg: post.image,
             likeCount: post.likes.length,
-            commentCount: 20,
+            commentCount: post.getDataValue("commentCount"),
             likedByUserIds: post.likes.map(like => like.userId),
             caption: post.caption
 
@@ -128,7 +139,7 @@ const addComment = async (req, res) => {
         if (!post) {
             return res.status(404).json({ message: "Post not found" })
         }
-        console.log(comment,postId,userId);
+        console.log(comment, postId, userId);
         const newComment = await Comment.create({
             comment,
             postId, userId
@@ -176,4 +187,4 @@ const getComments = async (req, res) => {
 }
 
 
-module.exports = { createPost, validateCreatePost, getAllPost, likePost, unlikePost ,getComments,addComment}
+module.exports = { createPost, validateCreatePost, getAllPost, likePost, unlikePost, getComments, addComment }

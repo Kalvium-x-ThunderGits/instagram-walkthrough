@@ -1,12 +1,24 @@
 import React, { useState } from "react";
 import { formatDistanceToNow } from "date-fns"
 import { FaHeart, FaRegHeart, FaRegComment, FaRegPaperPlane, FaRegBookmark, FaRegSmile } from "react-icons/fa";
+import PostDetailPage from "../PostDetailPage/PostDetailPage";
 
-const FeedCard = ({ feed, onLike, onUnlike, currentUserId }) => {
+const FeedCard = ({ feed, onLike, onUnlike, currentUserId, updateNewPost }) => {
     const [newComment, setNewComment] = useState('')
     const timeAgo = formatDistanceToNow(new Date(feed.time), { addSuffix: true });
     const isLikedByCurrentUser = feed.likedByUserIds.includes(currentUserId);
-    const API_URL = window.location.origin.replace("3000", "5000")
+    const API_URL = window.location.origin.replace("3000", "5000");
+    const [isPostDetailModal, setIsPostDetailModal] = useState(false);
+    const [updateNewComment , setUpdateNewcomment] = useState(false);
+    const updateCommentList = ()=>{
+        setUpdateNewcomment((prev)=>!prev)
+    }
+    function handleModalClose() {
+        setIsPostDetailModal(false)
+    }
+    function handleOpenModal() {
+        setIsPostDetailModal(true)
+    }
 
     const handleAddComment = async () => {
 
@@ -22,7 +34,7 @@ const FeedCard = ({ feed, onLike, onUnlike, currentUserId }) => {
                 body: JSON.stringify({
                     postId: feed.id,
                     comment: newComment
-                    
+
                 })
             })
 
@@ -32,8 +44,10 @@ const FeedCard = ({ feed, onLike, onUnlike, currentUserId }) => {
 
             const data = await response.json()
             console.log(data);
+            updateNewPost()
+            updateCommentList()
             setNewComment('')
-            
+
 
 
 
@@ -97,7 +111,7 @@ const FeedCard = ({ feed, onLike, onUnlike, currentUserId }) => {
 
             {/* Comment Count */}
             <div className="w-full text-sm text-gray-600 font-thin mb-2">
-                <a href="" className="text-gray-600 font-normal">View all {feed.commentCount} comments</a>
+                <a className="text-gray-600 font-normal" onClick={()=>setIsPostDetailModal(true)}>View all {feed.commentCount} comments</a>
             </div>
 
             {/* Add Comment  */}
@@ -107,7 +121,9 @@ const FeedCard = ({ feed, onLike, onUnlike, currentUserId }) => {
                     <button onClick={handleAddComment} className="bg-blue-500 text-white py-1 px-1 text-sm rounded">Post</button>
                 </div>
             </div>
+            {isPostDetailModal && <PostDetailPage feed = {feed} newComment={newComment} setNewComment={setNewComment} handleAddComment={handleAddComment} isPostDetailModal={isPostDetailModal} onClose={handleModalClose} updateNewComment={updateNewComment}></PostDetailPage>
 
+            }
 
         </div>
     )

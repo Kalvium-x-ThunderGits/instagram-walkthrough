@@ -72,7 +72,7 @@ const Feed = ({newPost,updateNewPost}) => {
                 <div className="w-full h-auto flex items-center justify-center mt-6 mb-6">
                     <div className="w-full lg:w-[73%] md:w-[73%] sm:w-[80%]">
                         {feeds && feeds.map((feed) => (
-                            <FeedCard key={feed.id} feed={feed} onLike = {likePost} onUnlike = {unlikePost} currentUserId={currentUserId}></FeedCard>
+                            <FeedCard key={feed.id} updateNewPost={updateNewPost} feed={feed} onLike = {likePost} onUnlike = {unlikePost} currentUserId={currentUserId}></FeedCard>
                         ))
 
                         }
