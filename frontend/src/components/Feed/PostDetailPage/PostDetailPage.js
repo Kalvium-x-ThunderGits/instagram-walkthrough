@@ -9,6 +9,9 @@ function PostDetailPage({ isPostDetailModal, onClose, feed ,handleAddComment,new
     useEffect(() => {
         const fetchComments = async () => {
             if (isPostDetailModal) {
+                try{
+
+                
                 const response = await fetch(`${API_URL}/api/posts/getComments/${feed.id}`)
                 if (!response.ok) {
                     throw new Error(response.statusText)
@@ -16,6 +19,9 @@ function PostDetailPage({ isPostDetailModal, onClose, feed ,handleAddComment,new
                 const data = await response.json()
                 console.log(data)
                 setComments(data)
+            }catch(err){
+                console.log(err)
+            }
 
 
             }
