@@ -2,7 +2,7 @@ import '../src/setupModalsTests';
 import React from 'react';
 import Modal from "react-modal";
 import { render, screen, fireEvent, waitFor, cleanup } from '@testing-library/react';
-import PostDetailModal from '../src/components/Feed/PostDetailPage/PostDetailPage';
+import PostDetailPage from '../src/components/Feed/PostDetailPage/PostDetailPage';
 import { FaTimes, FaArrowLeft } from 'react-icons/fa';
 
 describe('PostDetailModal Component', () => {
@@ -45,8 +45,8 @@ describe('PostDetailModal Component', () => {
 
     it('[REQ0049]_calls_handleAddComment_when_the_Post_button_is_clicked', async () => {
         render(
-            <PostDetailModal
-                isOpen={true}
+            <PostDetailPage
+                isPostDetailModal={true}
                 onClose={closeModal}
                 feed={feed}
                 comments={comments}
@@ -70,8 +70,8 @@ describe('PostDetailModal Component', () => {
 
     it('[REQ0050]_updates_newComment_state_on_input_change', async () => {
         render(
-            <PostDetailModal
-                isOpen={true}
+            <PostDetailPage
+                isPostDetailModal={true}
                 onClose={closeModal}
                 feed={feed}
                 comments={comments}
