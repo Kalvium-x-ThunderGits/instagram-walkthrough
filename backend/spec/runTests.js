@@ -20,6 +20,7 @@ require('./getAllPostSpec.js');
 require("./getProfileSpec.js")
 require("./likeUnlikeSpec.js")
 require("./commentSpec.js")
+require("./deletePostSpec.js")
 
 // Run the tests
 jasmine.execute();
