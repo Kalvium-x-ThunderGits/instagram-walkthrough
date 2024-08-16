@@ -6,4 +6,23 @@ const sequelize = new Sequelize({
     logging:false
 })
 
+// {
+//     development:{
+//         dialect:"sqlite",
+//         storage:"./data/dev-db.sqlite",
+//         logging:false
+//     },
+//     test:{
+//         dialect:"sqlite",
+//         storage:"./data/test-db.sqlite",
+//         logging:false
+//     },
+//     development:{
+//         dialect:"sqlite",
+//         storage:"./data/prod-db.sqlite",
+//         logging:false
+//     }
+
+// }
+
 module.exports = sequelize 
