@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import ProfileBio from "../components/Profile/ProfileBio";
 import ProfileHeader from "../components/Profile/ProfileHeader";
 import ProfilePosts from "../components/Profile/ProfilePosts";
-
+import { useOutletContext } from "react-router-dom";
 
 const Profile = () => {
     const API_URL = window.location.origin.replace("3000", "5000")
     const [profileData, setProfileData] = useState()
+    const {newPost,updateNewPost} = useOutletContext()
 
     useEffect(() => {
         const fetchProfileData = async () => {
@@ -37,7 +38,7 @@ const Profile = () => {
         }
 
         fetchProfileData()
-    }, [])
+    }, [newPost])
 
 
     return (
@@ -46,7 +47,7 @@ const Profile = () => {
                 <>
                     <ProfileHeader username={profileData.user.username} postCount={profileData.posts.length}></ProfileHeader>
                     <ProfileBio fullname={profileData.user.fullname}></ProfileBio>
-                    <ProfilePosts posts={profileData.posts}></ProfilePosts>
+                    <ProfilePosts posts={profileData.posts} updateNewPost={updateNewPost} ></ProfilePosts>
                 </>
             )
 
