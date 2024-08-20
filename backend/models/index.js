@@ -30,5 +30,6 @@ module.exports = {
     Post,
     User,
     Like,
-    Comment
+    Comment,
+    Follow
 }
