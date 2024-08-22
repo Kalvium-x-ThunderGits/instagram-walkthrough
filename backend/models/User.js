@@ -19,6 +19,10 @@ const User = sequelize.define("User",{
     password : {
         type:DataTypes.STRING,
         allowNull : false
+    },
+    profilePhoto:{
+        type:DataTypes.STRING,
+        allowNull:true
     }
 
 

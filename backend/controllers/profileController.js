@@ -170,4 +170,74 @@ const unfollowUser = async (req, res) => {
     }
 }
 
-module.exports = { getProfile, getProfileByUsername, followUser, unfollowUser }
+const updateProfilePhoto = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const { profilePhoto } = req.body
+
+        if (!profilePhoto || typeof profilePhoto !== "string") {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid profile photo URL"
+            })
+        }
+
+        const user = await User.findByPk(userId);
+        if (!user) {
+            return res.status(400).json({ success: false, message: "User not found" })
+        }
+
+        user.profilePhoto = profilePhoto
+        await user.save()
+
+        res.status(200).json({
+            success: true,
+            message: "Profile photo updated successfully",
+            user: { profilePhoto: user.profilePhoto }
+        })
+    } catch (err) {
+        console.log("Error fething profile details :", err)
+        res.status(500).json({
+            success: false,
+            message: "Internal server error"
+        })
+    }
+}
+
+const deleteProfilePhoto = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const user = await User.findByPk(userId)
+
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found"
+            })
+        }
+
+        user.profilePhoto = null
+        await user.save()
+
+        return res.status(200).json({
+            success: true,
+            message: "Profile photo deleted successfully",
+            user: {
+                id: user.id,
+                username: user.username,
+                profilePhoto: user.profilePhoto
+            }
+        })
+
+    } catch (err) {
+        console.log(`Error in delete profile photo :`, err)
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error"
+        })
+    }
+}
+
+
+
+module.exports = { getProfile, getProfileByUsername, followUser, unfollowUser,updateProfilePhoto,deleteProfilePhoto }
