@@ -24,6 +24,7 @@ require("./likeUnlikeSpec.js")
 require("./commentSpec.js")
 require("./deletePostSpec.js")
 require("./followUnfollowSpec")
+require("./profilePhotoSpec.js")
 
 // Run the tests
 jasmine.execute();
