@@ -1,6 +1,6 @@
 // spec/testFile2.spec.js
 const request = require('supertest');
-const User = require('../models/User');
+const {User,Post,Comment,Like,Follow} = require('../models');
 const { app } = require('../app');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -38,8 +38,8 @@ describe('User API - Login', () => {
 
             expect(response.status).toBe(200);
             expect(response.body).toEqual({
-                id: jasmine.any(Number), 
-                username: jasmine.any(String), 
+                id: jasmine.any(Number),
+                username: jasmine.any(String),
                 token: jasmine.any(String), // Use jasmine.any for object comparison
                 message: 'Login Successfully'
             });

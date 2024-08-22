@@ -1,7 +1,5 @@
 const request = require('supertest');
-const User = require('../models/User');
-const Post = require('../models/Post');
-const Follow = require('../models/Follow');
+const { User, Post, Comment, Like, Follow } = require('../models');
 const { app } = require('../app');
 const jwt = require('jsonwebtoken');
 require('./helpers/dbSetup');

@@ -10,17 +10,19 @@ jasmine.addReporter(new SpecReporter({
         displayPending: true,
     }
 }));
+jasmine.randomizeTests(false);  // Ensure tests run in order
+
 
 // Import all test files
-// require('./userSpec.js'); 
-// require('./loginUserSpec.js');
-// require('./createPostSpec.js');
-// require('./authorizeUserSpec.js');
-// require('./getAllPostSpec.js');
-// require("./getProfileSpec.js")
-// require("./likeUnlikeSpec.js")
-// require("./commentSpec.js")
-// require("./deletePostSpec.js")
+require('./userSpec.js');
+require('./loginUserSpec.js');
+require('./createPostSpec.js');
+require('./authorizeUserSpec.js');
+require('./getAllPostSpec.js');
+require("./getProfileSpec.js")
+require("./likeUnlikeSpec.js")
+require("./commentSpec.js")
+require("./deletePostSpec.js")
 require("./followUnfollowSpec")
 
 // Run the tests
