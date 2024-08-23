@@ -11,6 +11,7 @@ describe('ProfilePosts component tests', () => {
     let mockUpdateNewPost;
     let updateNewPost;
     let posts;
+    let user;
 
     beforeEach(() => {
         // Create a div with id 'root' and append it to the document body
@@ -39,12 +40,14 @@ describe('ProfilePosts component tests', () => {
             });
         });
 
+        // Mock posts and user data
         posts = [
             { id: 1, image: 'image1.jpg' },
             { id: 2, image: 'image2.jpg' }
         ];
+        user = { id: 1 }; // Simulate the logged-in user
 
-        container = render(<ProfilePosts posts={posts} updateNewPost={mockUpdateNewPost} />);
+        container = render(<ProfilePosts posts={posts} updateNewPost={mockUpdateNewPost} user={user} />);
     });
 
     afterEach(() => {
@@ -58,7 +61,10 @@ describe('ProfilePosts component tests', () => {
     });
 
     it('[REQ055]_should_open_the_delete_modal_when_delete_icon_is_clicked', () => {
-        const { getByAltText, getByTestId } = container;
+        const { getByAltText, queryByTestId } = container;
+
+        // Simulate localStorage for the logged-in user
+        localStorage.setItem('id', '1');
 
         // Find the delete icon for the first post and click it
         const deleteIcon = getByAltText('Post 1').parentNode.querySelector('.group-hover\\:opacity-100');
@@ -70,8 +76,10 @@ describe('ProfilePosts component tests', () => {
     });
 
     it('[REQ056]_should_delete_post_when_confirm_button_in_modal_is_clicked', async () => {
-        // Render the component
-        const { getByAltText, getByText, queryByText } = container;
+        const { getByAltText, getByText } = container;
+
+        // Simulate localStorage for the logged-in user
+        localStorage.setItem('id', '1');
 
         // Open the delete modal
         const deleteIcon = getByAltText('Post 1').parentNode.querySelector('.group-hover\\:opacity-100');
@@ -94,16 +102,17 @@ describe('ProfilePosts component tests', () => {
                     }),
                 })
             );
-
-
-
-
         });
 
+        // Verify that updateNewPost was called to refresh the posts
+        expect(mockUpdateNewPost).toHaveBeenCalled();
     });
 
     it('[REQ057]_should_close_the_delete_modal_when_cancel_button_is_clicked', () => {
         const { getByAltText, getByText } = container;
+
+        // Simulate localStorage for the logged-in user
+        localStorage.setItem('id', '1');
 
         // Open the delete modal
         const deleteIcon = getByAltText('Post 1').parentNode.querySelector('.group-hover\\:opacity-100');
@@ -117,4 +126,6 @@ describe('ProfilePosts component tests', () => {
         const modal = document.querySelector('.ReactModal__Content');
         expect(modal).toBeFalsy();
     });
+
+ 
 });

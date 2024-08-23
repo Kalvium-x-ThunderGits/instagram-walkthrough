@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent, waitFor, cleanup } from '@testing-library/react';
 import FeedCard from '../src/components/Feed/FeedCard/FeedCard';
+import { BrowserRouter } from 'react-router-dom';
 
 const API_URL = window.location.origin.replace("3000", "5000");
 
@@ -41,7 +42,8 @@ describe('FeedCard component comment functionality tests', () => {
       });
     });
 
-    container = render(<FeedCard feed={feed} currentUserId="currentUserId" />);
+    container = render(<BrowserRouter> <FeedCard feed={feed} currentUserId="currentUserId" />
+    </BrowserRouter>);
   });
 
   afterEach(() => {
@@ -72,9 +74,9 @@ describe('FeedCard component comment functionality tests', () => {
           postId: feed.id,
           comment: 'New comment',
         })),
-      }));     
+      }));
     });
-    
+
   });
 
   it('[REQ048]_should_not_make_an_api_call_when_the_comment_is_empty', () => {

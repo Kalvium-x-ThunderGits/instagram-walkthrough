@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import '@testing-library/jasmine-dom';
 import FeedCard from "../src/components/Feed/FeedCard/FeedCard";
+import { BrowserRouter } from "react-router-dom";
 
 describe("FeedCard Component", () => {
     // Mock feed data
@@ -28,12 +29,15 @@ describe("FeedCard Component", () => {
 
         // Render the component with unliked feed
         render(
-            <FeedCard
-                feed={unlikedFeed}
-                onLike={mockOnLike}
-                onUnlike={mockOnUnlike}
-                currentUserId={1}
-            />
+            <BrowserRouter>
+                <FeedCard
+                    feed={unlikedFeed}
+                    onLike={mockOnLike}
+                    onUnlike={mockOnUnlike}
+                    currentUserId={1}
+                />
+            </BrowserRouter>
+
         );
 
         // Find the like button and empty heart icon using data-testid
@@ -53,12 +57,14 @@ describe("FeedCard Component", () => {
     it("[REQ042]_should_call_onUnlike_when_the_unlike_button_(filled heart icon)_is_clicked", () => {
         // Render the component with liked feed
         render(
-            <FeedCard
-                feed={mockFeed}
-                onLike={mockOnLike}
-                onUnlike={mockOnUnlike}
-                currentUserId={1}
-            />
+            <BrowserRouter>
+                <FeedCard
+                    feed={mockFeed}
+                    onLike={mockOnLike}
+                    onUnlike={mockOnUnlike}
+                    currentUserId={1}
+                />
+            </BrowserRouter>
         );
 
         // Find the unlike button and filled heart icon using data-testid

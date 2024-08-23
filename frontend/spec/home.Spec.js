@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jasmine-dom";
 import FeedCard from "../src/components/Feed/FeedCard/FeedCard";
+import { BrowserRouter } from "react-router-dom";
 
 describe("FeedCard Component", () => {
   const feed = {
@@ -19,7 +20,7 @@ describe("FeedCard Component", () => {
   };
 
   it("[REQ014]_renders_FeedCard_component_with_feed_data", () => {
-    render(<FeedCard feed={feed} />);
+    render(<BrowserRouter><FeedCard feed={feed} /></BrowserRouter>);
 
     expect(screen.getByAltText(feed.username)).toBeTruthy();
     
