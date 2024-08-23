@@ -19,7 +19,7 @@ function RoutesComponent(){
 
         <Route path="/" element= {isAuthenticated ? <AppLayout /> : <Navigate to= "/signin"/>}>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/profile/:username" element={<Profile />}></Route>
         </Route>
         <Route path="/signup" element={isAuthenticated ?  <Navigate to= "/"/> : <SignUp />}></Route>
         <Route path="/signin" element={isAuthenticated ?  <Navigate to= "/"/> : <SignIn />}></Route>

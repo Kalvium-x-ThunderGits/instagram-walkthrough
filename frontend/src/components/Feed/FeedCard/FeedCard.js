@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { formatDistanceToNow } from "date-fns"
 import { FaHeart, FaRegHeart, FaRegComment, FaRegPaperPlane, FaRegBookmark, FaRegSmile } from "react-icons/fa";
 import PostDetailPage from "../PostDetailPage/PostDetailPage";
+import {Link} from "react-router-dom"
 
 const FeedCard = ({ feed, onLike, onUnlike, currentUserId, updateNewPost }) => {
     const [newComment, setNewComment] = useState('')
@@ -67,7 +68,7 @@ const FeedCard = ({ feed, onLike, onUnlike, currentUserId, updateNewPost }) => {
                         </div>
                     </a>
                     <div className="flex items-center gap-x-2">
-                        <p className="text-black text-sm font-medium">{feed.username}</p>
+                       <Link to={`/profile/${feed.username}`}><p className="text-black text-sm font-medium">{feed.username}</p></Link> 
                         <div className="w-1 h-1 bg-gray-500 rounded-full"></div>
                         <p className="text-black text-sm">{timeAgo}</p>
                     </div>
