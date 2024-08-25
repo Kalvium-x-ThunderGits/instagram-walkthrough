@@ -1,5 +1,6 @@
 const { where } = require("sequelize");
-const { Post, User, Like, Comment, sequelize } = require("../models");
+const { Op } = require("sequelize")
+const { Post, User, Like, Comment, sequelize, Follow } = require("../models");
 const { body, validationResult, Result } = require("express-validator");
 
 const validateCreatePost = [
@@ -214,4 +215,75 @@ const deletePost = async (req, res) => {
     }
 }
 
-module.exports = { createPost, validateCreatePost, getAllPost, likePost, unlikePost, getComments, addComment,deletePost }
+const getFollowingPost = async (req, res) => {
+    try {
+
+        const userId = req.user.id;
+        console.log(userId);
+        const followingUsers = await Follow.findAll({
+            where: { followerId: userId },
+        }
+        )
+        console.log(followingUsers);
+
+        const followingUserIds = followingUsers.map((follow) => follow.followeeId);
+        console.log(followingUserIds);
+        if (followingUserIds.length === 0) {
+            return res.status(200).json([])
+        }
+        console.log("Yeah we have followings");
+        const posts = await Post.findAll({
+            where: {
+                userId: {
+                    [Op.in]: followingUserIds
+                }
+            },
+            include: [
+                {
+                    model: User,
+                    as: "postedBy",
+                    attributes: ['username']
+                },
+                {
+                    model: Like,
+                    as: "likes",
+                    attributes: ['userId']
+                },
+                {
+                    model: Comment,
+                    as: "comments",
+                    attributes: []
+                }
+            ],
+            order: [['createdAt', "DESC"]],
+            attributes: {
+                include: [
+                    [sequelize.fn("COUNT", sequelize.col("comments.id")), "commentCount"]
+                ]
+            },
+            group: ["Post.id", "postedBy.id"]
+
+        })
+
+        const formattedPosts = posts.map((post) => ({
+            id: post.id,
+            profileImg: "https://cdn-icons-png.flaticon.com/128/3177/3177440.png",
+            username: post.postedBy.username,
+            time: post.createdAt,
+            postImg: post.image,
+            likeCount: post.likes.length,
+            commentCount: post.getDataValue("commentCount"),
+            likedByUserIds: post.likes.map(like => like.userId),
+            caption: post.caption
+
+        }));
+
+        res.status(200).json(formattedPosts)
+
+    } catch (err) {
+        console.error("Error fetching posts from following users:", err)
+        res.status(500).json({ message: "Internal server error" })
+    }
+}
+
+module.exports = { createPost, validateCreatePost, getAllPost, likePost, unlikePost, getComments, addComment, deletePost, getFollowingPost }
