@@ -77,7 +77,7 @@ const getProfileByUsername = async (req, res) => {
                 username: user.username,
                 fullname: user.fullname,
                 followers: user.Followers,
-                following: user.Follwing
+                following: user.Following
             },
             posts: user.posts
         })
