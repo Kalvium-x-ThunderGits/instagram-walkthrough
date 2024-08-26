@@ -1,7 +1,6 @@
 // spec/testFile3.spec.js
 const request = require('supertest');
-const User = require('../models/User');
-const Post = require('../models/Post');
+const { User ,Post} = require('../models');
 const { app } = require('../app');
 const jwt = require('jsonwebtoken');
 require('./helpers/dbSetup'); // Import centralized setup
