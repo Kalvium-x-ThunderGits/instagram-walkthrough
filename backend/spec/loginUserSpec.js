@@ -4,18 +4,12 @@ const User = require('../models/User');
 const { app, server } = require('../app');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+require('./helpers/dbSetup'); // Import centralized setup
 
 const JWT_SECRET = process.env.JWT_SECRET || 'default_jwt_secret'; // Use a default for testing
 
 describe('User API - Login', () => {
-    beforeAll(async () => {
-        await sequelize.sync({ force: true }); // Ensure clean database
-    });
 
-    afterAll(async () => {
-        await sequelize.close();
-        server.close();
-    });
 
     beforeEach(async () => {
         await User.destroy({ truncate: true, cascade: true }); // Clear all users before each test
