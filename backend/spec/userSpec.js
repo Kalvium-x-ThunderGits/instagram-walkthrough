@@ -1,6 +1,6 @@
 // spec/testFile1.spec.js
 const request = require('supertest');
-const User = require('../models/User');
+const { User} = require('../models');
 const { app } = require('../app');
 require('./helpers/dbSetup'); // Import centralized setup
 

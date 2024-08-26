@@ -1,6 +1,6 @@
 // spec/testFile2.spec.js
 const request = require('supertest');
-const User = require('../models/User');
+const { User } = require('../models');
 const { app } = require('../app');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');

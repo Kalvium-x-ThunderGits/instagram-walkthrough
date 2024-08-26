@@ -10,6 +10,8 @@ jasmine.addReporter(new SpecReporter({
         displayPending: true,
     }
 }));
+jasmine.randomizeTests(false);  // Ensure tests run in order
+
 
 // Import all test files
 require('./userSpec.js'); // replace with your actual test file names

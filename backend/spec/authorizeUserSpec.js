@@ -1,6 +1,6 @@
 // spec/testFile4.spec.js
 const request = require('supertest');
-const User = require('../models/User');
+const { User } = require('../models');
 const { app } = require('../app');
 const jwt = require('jsonwebtoken');
 
