@@ -1,9 +1,6 @@
 // spec/likeUnlikeSpec.js
 const request = require('supertest');
-const User = require('../models/User');
-const Post = require('../models/Post');
-const Like = require('../models/Like');
-const { app } = require('../app');
+const { User,Post ,Like} = require('../models');const { app } = require('../app');
 const jwt = require('jsonwebtoken');
 require('./helpers/dbSetup'); // Import centralized setup
 

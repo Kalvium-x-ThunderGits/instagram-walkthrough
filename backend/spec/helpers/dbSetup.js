@@ -1,5 +1,5 @@
 // spec/helpers/dbSetup.js
-const sequelize = require('../../config/db');
+const { sequelize } = require('../../models');
 const { server } = require('../../app');
 
 beforeAll(async () => {
