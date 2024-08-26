@@ -15,6 +15,7 @@ describe('ProfileHeader component tests', () => {
         mockUser = {
             id: 1,
             followers: [{ id: 2 }],
+            following: [],
         };
         mockUpdateNewPost = jasmine.createSpy('updateNewPost');
 
