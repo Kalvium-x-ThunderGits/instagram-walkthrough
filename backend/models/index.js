@@ -1,22 +1,35 @@
 const sequelize = require("../config/db");
 const User = require("./User.js");
 const Post = require("./Post.js");
-const Like = require("./Like.js")
+const Like = require("./Like.js");
+const Comment = require("./comment.js");
 
 
-User.hasMany(Post, { foreignKey: "userId", as: "posts" });
-Post.belongsTo(User, { foreignKey: "userId", as: "postedBy" })
+// User and Post Association
+User.hasMany(Post, { foreignKey: "userId", as: "posts", onDelete: 'CASCADE' });
+Post.belongsTo(User, { foreignKey: "userId", as: "postedBy" });
 
-Like.belongsTo(Post,{foreignKey:"postId",as:"post"}),
-Post.hasMany(Like,{foreignKey:'postId',as:"likes"})
+// Post and Like Association
+Like.belongsTo(Post, { foreignKey: "postId", as: "post", onDelete: 'CASCADE' });
+Post.hasMany(Like, { foreignKey: 'postId', as: "likes", onDelete: 'CASCADE' });
 
-Like.belongsTo(User,{foreignKey:"userId",as:"likedBy"})
-User.hasMany(Like,{foreignKey:"userId",as:"like"})
+// User and Like Association
+Like.belongsTo(User, { foreignKey: "userId", as: "likedBy", onDelete: 'CASCADE' });
+User.hasMany(Like, { foreignKey: "userId", as: "likes", onDelete: 'CASCADE' });  // Changed alias from "like" to "likes" for consistency
 
+// User and Comment Association
+User.hasMany(Comment, { foreignKey: "userId", as: "comments", onDelete: 'CASCADE' });
+Comment.belongsTo(User, { foreignKey: "userId", as: "postedBy" });
+
+// Post and Comment Association
+Post.hasMany(Comment, { foreignKey: "postId", as: "comments", onDelete: 'CASCADE' });
+Comment.belongsTo(Post, { foreignKey: "postId", as: "post", onDelete: 'CASCADE' });
 
 module.exports = {
     sequelize,
     Post,
     User,
-    Like
-}
+    Like,
+    Comment,
+
+};

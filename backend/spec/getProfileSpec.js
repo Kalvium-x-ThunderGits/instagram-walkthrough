@@ -1,7 +1,7 @@
 const request = require('supertest');
-const User = require('../models/User');
-const Post = require('../models/Post');
+const { User, Post, Comment, Like } = require('../models'); 
 const { app } = require('../app');
+
 const jwt = require('jsonwebtoken');
 require('./helpers/dbSetup'); // Import centralized setup
 
@@ -72,8 +72,8 @@ describe('Profile API', () => {
             expect(response.body.user.username).toBe(user.username);
             expect(response.body.user.password).toBeUndefined(); // Ensure password is not included
             expect(response.body.posts).toBeTruthy(); // Ensure posts array is present
-            
-            
+
+
         });
 
         it('[REQ030]_fetch_profile_with_invalid_token', async () => {
