@@ -18,4 +18,7 @@ router.post("/unfollow/:followeeId", authorizeUser, profileController.unfollowUs
 router.put("/profile/photo", authorizeUser, profileController.updateProfilePhoto)
 router.delete("/profile/photo", authorizeUser, profileController.deleteProfilePhoto)
 
+router.post("/google",userController.userGoogleLogin)
+router.post("/complete-profile",userController.completeProfile)
+
 module.exports = router
