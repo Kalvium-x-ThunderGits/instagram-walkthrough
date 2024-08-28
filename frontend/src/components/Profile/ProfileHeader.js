@@ -167,7 +167,7 @@ const ProfileHeader = ({ username, postCount, user, updateNewPost }) => {
                         <input type="file" id="upload-profile-pic" className="hidden" onChange={handleUploadPic} />
                     </button>
                     <button onClick={removeProfilePhotoInDatabase} className="block w-full mb-2 px-4 py-2 bg-red-500 text-white rounded">
-                        Remove Profile Photo
+                        Remove Current Photo
 
                     </button>
                     <button onClick={closeProfilePicModal} className="block w-full mb-2 px-4 py-2 bg-gray-500 text-white rounded">
