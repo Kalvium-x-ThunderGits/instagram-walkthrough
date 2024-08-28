@@ -108,7 +108,7 @@ describe('ProfilePosts component tests', () => {
         expect(mockUpdateNewPost).toHaveBeenCalled();
     });
 
-    it('[REQ057]_should_close_the_delete_modal_when_cancel_button_is_clicked', () => {
+    it('[REQ057]_should_close_the_delete_modal_when_cancel_button_is_clicked', async () => {
         const { getByAltText, getByText } = container;
 
         // Simulate localStorage for the logged-in user
@@ -118,14 +118,23 @@ describe('ProfilePosts component tests', () => {
         const deleteIcon = getByAltText('Post 1').parentNode.querySelector('.group-hover\\:opacity-100');
         fireEvent.click(deleteIcon);
 
-        // Find the cancel button in the delete modal and click it
-        const cancelButton = getByText('Cancel');
+        // Wait for the modal to open
+        await waitFor(() => {
+            const modal = document.querySelector('.ReactModal__Content');
+            expect(modal).toBeTruthy();  // Verify modal is open
+        });
+
+        // Now find and click the Cancel button
+        const cancelButton = await waitFor(() => getByText('Cancel'));
         fireEvent.click(cancelButton);
 
-        // Verify that the delete modal is closed
-        const modal = document.querySelector('.ReactModal__Content');
-        expect(modal).toBeFalsy();
+        // Wait for the modal to close
+        await waitFor(() => {
+            const modal = document.querySelector('.ReactModal__Content');
+            expect(modal).toBeFalsy();  // Verify modal is closed
+        });
     });
 
- 
+
+
 });
