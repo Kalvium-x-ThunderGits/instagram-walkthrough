@@ -1,4 +1,4 @@
-## **Milestone 28 - Backend API for My Following Posts**
+## **Milestone 27 - Backend API for My Following Posts**
 
 ### **Overview**
 
