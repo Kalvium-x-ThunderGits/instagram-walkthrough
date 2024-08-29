@@ -3,7 +3,8 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jasmine-dom";
 import { BrowserRouter } from "react-router-dom";
 import SignUp from "../src/pages/SignUp";
-const API_URL = window.location.origin.replace("3000", "5000")
+const API_URL = window.location.origin.replace("3000", "5000");
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 describe("SignUp component tests", () => {
   beforeEach(() => {
@@ -31,9 +32,12 @@ describe("SignUp component tests", () => {
 
   it("[REQ001]_renders_SignUp_form_with_all_necessary_fields", () => {
     render(
-      <BrowserRouter>
-        <SignUp />
-      </BrowserRouter>
+      <GoogleOAuthProvider>
+        <BrowserRouter>
+          <SignUp />
+        </BrowserRouter>
+      </GoogleOAuthProvider>
+
     );
 
     expect(screen.getByPlaceholderText(/Full Name/i)).toBeTruthy(); // Use .toBeTruthy() instead of .toBeInTheDocument()
@@ -46,9 +50,11 @@ describe("SignUp component tests", () => {
 
   it("[REQ002]_register_new_user_and_displays_success_message", async () => {
     render(
-      <BrowserRouter>
-        <SignUp />
-      </BrowserRouter>
+      <GoogleOAuthProvider>
+        <BrowserRouter>
+          <SignUp />
+        </BrowserRouter>
+      </GoogleOAuthProvider>
     );
 
     // Fill out the form
@@ -69,9 +75,11 @@ describe("SignUp component tests", () => {
 
   it("[REQ006]_submits_form_with_all_fields_filled_and_sends_correct_data", async () => {
     render(
-      <BrowserRouter>
-        <SignUp />
-      </BrowserRouter>
+      <GoogleOAuthProvider>
+        <BrowserRouter>
+          <SignUp />
+        </BrowserRouter>
+      </GoogleOAuthProvider>
     );
 
     // Fill out the form
@@ -103,9 +111,11 @@ describe("SignUp component tests", () => {
   });
   it("[REQ007]__display_an_error_message_for_invalid_password", async () => {
     render(
-      <BrowserRouter>
-        <SignUp />
-      </BrowserRouter>
+      <GoogleOAuthProvider>
+        <BrowserRouter>
+          <SignUp />
+        </BrowserRouter>
+      </GoogleOAuthProvider>
     );
 
 
