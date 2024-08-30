@@ -116,6 +116,7 @@ describe('ProfilePosts component tests', () => {
 
         // Open the delete modal
         const deleteIcon = getByAltText('Post 1').parentNode.querySelector('.group-hover\\:opacity-100');
+
         fireEvent.click(deleteIcon);
 
         // Wait for the modal to open
@@ -126,6 +127,7 @@ describe('ProfilePosts component tests', () => {
 
         // Now find and click the Cancel button
         const cancelButton = await waitFor(() => getByText('Cancel'));
+
         fireEvent.click(cancelButton);
 
         // Wait for the modal to close
@@ -134,7 +136,5 @@ describe('ProfilePosts component tests', () => {
             expect(modal).toBeFalsy();  // Verify modal is closed
         });
     });
-
-
 
 });
