@@ -39,7 +39,7 @@ export default function CompleteProfile() {
                 <form className='space-y-4 w-full' onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor="username" className='block text-sm font-medium text-gray-700'>Username</label>
-                        <input type="text" placeholder="Username" id='username'
+                        <input type="text" placeholder="Enter your username" id='username'
                             value={username}
                             onChange={(e) => { setUsername(e.target.value) }}
                             required
