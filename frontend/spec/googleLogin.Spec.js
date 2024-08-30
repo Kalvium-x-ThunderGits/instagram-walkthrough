@@ -66,7 +66,7 @@ describe('CompleteProfile component tests', () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                userId: parseInt(localStorage.getItem('userId')), // ID from localStorage
+                userId: parseInt(localStorage.getItem('id')), // ID from localStorage
                 username: 'testuser',
             }),
         });
