@@ -81,7 +81,7 @@ const userGoogleLogin = async(req,res)=>{
         }
 
         const newUser = await User.create({
-            fullName:name,
+            fullname:name,
             email,
             googleId,
             profilePhoto :Photo
