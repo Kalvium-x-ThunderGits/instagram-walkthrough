@@ -14,6 +14,7 @@ jasmine.randomizeTests(false);  // Ensure tests run in order
 
 
 // Import all test files
+require("./followUnfollowSpec")
 require('./userSpec.js');
 require('./loginUserSpec.js');
 require('./createPostSpec.js');
@@ -23,7 +24,6 @@ require("./getProfileSpec.js")
 require("./likeUnlikeSpec.js")
 require("./commentSpec.js")
 require("./deletePostSpec.js")
-require("./followUnfollowSpec")
 require("./profilePhotoSpec.js");
 require("./getMyFollowingPostSpec.js");
 require("./googleLoginSpec.js");

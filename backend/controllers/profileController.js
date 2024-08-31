@@ -1,5 +1,6 @@
 
-const { Post, User, Like, Follow } = require("../models")
+const { Post, User, Like, Follow } = require("../models");
+const {Op} = require("sequelize")
 
 
 const getProfile = async (req, res) => {
@@ -238,6 +239,49 @@ const deleteProfilePhoto = async (req, res) => {
     }
 }
 
+const searchUsers = async (req, res) => {
+    const { query } = req.query
+    try {
+
+        if (!query) {
+            return res.status(400).json({
+                success: false,
+                message: "Search query is required"
+            })
+        }
+
+        const users = await User.findAll({
+            where:{
+                username:{
+                    [Op.like] : `%${query}%`
+                }
+            },
+            attributes:["id","username","fullname","profilePhoto"]
+        })
+
+        if(users.length === 0){
+            return res.status(200).json({
+                success:true,
+                message:"No users found"
+            })
+        }
+
+        return res.status(200).json({
+            success:true,
+            users
+        })
 
 
-module.exports = { getProfile, getProfileByUsername, followUser, unfollowUser,updateProfilePhoto,deleteProfilePhoto }
+    } catch (err) {
+        console.log("Error searching users", err)
+        return res.status(500).json({
+            success:false,
+            message:"Internal server error"
+        })
+
+    }
+}
+
+
+
+module.exports = { searchUsers, getProfile, getProfileByUsername, followUser, unfollowUser, updateProfilePhoto, deleteProfilePhoto }

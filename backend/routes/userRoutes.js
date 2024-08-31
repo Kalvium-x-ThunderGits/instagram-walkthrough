@@ -20,5 +20,6 @@ router.delete("/profile/photo", authorizeUser, profileController.deleteProfilePh
 
 router.post("/google",userController.userGoogleLogin)
 router.post("/complete-profile",userController.completeProfile)
+router.get('/search' ,profileController.searchUsers)
 
 module.exports = router
