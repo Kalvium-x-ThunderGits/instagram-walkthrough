@@ -26,7 +26,8 @@ require("./deletePostSpec.js")
 require("./followUnfollowSpec")
 require("./profilePhotoSpec.js");
 require("./getMyFollowingPostSpec.js");
-require("./googleLoginSpec.js")
+require("./googleLoginSpec.js");
+require("./userSearchSpec.js")
 
 // Run the tests
 jasmine.execute();

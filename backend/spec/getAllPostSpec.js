@@ -1,5 +1,5 @@
 const request = require('supertest');
-const { User, Post, Comment, Like, Follow } = require('../models');
+const { User, Post, Comment, Like } = require('../models');
 const { app } = require('../app');
 const jwt = require('jsonwebtoken');
 require('./helpers/dbSetup'); // Import centralized setup
@@ -73,14 +73,15 @@ describe('Post API', () => {
 
             const response = await request(app)
                 .get('/api/posts/getAll')
-                .set('Authorization', `Bearer ${token}`);
+                .set('Authorization', `Bearer ${token}`)
+                .query({ page: 1, limit: 10 }); // Pass page and limit as query parameters
 
             expect(response.status).toBe(200);
-            expect(response.body).toEqual(jasmine.arrayContaining([
+            expect(response.body.posts).toEqual(jasmine.arrayContaining([
                 jasmine.objectContaining({
                     id: jasmine.any(Number),
                     username: user.username, // Use actual username
-                    profileImg: jasmine.any(String), // Ensure it matches actual profile image URL if needed
+                    profileImg: 'https://cdn-icons-png.flaticon.com/128/3177/3177440.png', // Default profile image
                     postImg: 'https://example.com/post1.jpg',
                     caption: 'Post 1',
                     likeCount: jasmine.any(Number),
@@ -90,7 +91,7 @@ describe('Post API', () => {
                 jasmine.objectContaining({
                     id: jasmine.any(Number),
                     username: user.username, // Use actual username
-                    profileImg: jasmine.any(String), // Ensure it matches actual profile image URL if needed
+                    profileImg: 'https://cdn-icons-png.flaticon.com/128/3177/3177440.png', // Default profile image
                     postImg: 'https://example.com/post2.jpg',
                     caption: 'Post 2',
                     likeCount: jasmine.any(Number),
@@ -98,27 +99,20 @@ describe('Post API', () => {
                     time: jasmine.any(String)
                 })
             ]));
+            expect(response.body.currentPage).toBe(1);
+            expect(response.body.totalPosts).toBe(2);
         });
 
         it('[REQ027]_fetch_no_posts', async () => {
             const response = await request(app)
                 .get('/api/posts/getAll')
-                .set('Authorization', `Bearer ${token}`);
+                .set('Authorization', `Bearer ${token}`)
+                .query({ page: 1, limit: 10 }); // Pass page and limit as query parameters
 
             expect(response.status).toBe(200);
-            expect(response.body).toEqual([]);
+            expect(response.body.posts).toEqual([]);
+            expect(response.body.currentPage).toBe(1);
+            expect(response.body.totalPosts).toBe(0);
         });
-
-        // it('[REQ028]_fetch_posts_with_invalid_token', async () => {
-        //     const response = await request(app)
-        //         .get('/api/posts/getAll')
-        //         .set('Authorization', 'Bearer invalid_token');
-
-        //     expect(response.status).toBe(401);
-        //     expect(response.body).toEqual({
-        //         success: false,
-        //         message: 'Invalid credentials'
-        //     });
-        // });
     });
 });
