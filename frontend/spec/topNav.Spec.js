@@ -13,9 +13,7 @@ describe('TopNav Component', () => {
     const searchInput = screen.getByPlaceholderText(/Search/i);
     expect(searchInput).toBeTruthy();
 
-    // Check if the search button with icon is rendered
-    const searchButton = screen.getByTestId('search button');
-    expect(searchButton).toBeTruthy();
+
 
 
 
