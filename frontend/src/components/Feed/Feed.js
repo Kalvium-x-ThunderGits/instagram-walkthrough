@@ -42,7 +42,14 @@ const Feed = ({ newPost, updateNewPost }) => {
             });
             const result = await response.json();
             console.log(result);
-            updateNewPost()
+            // Optimistically update the UI
+            setFeeds(prevFeeds =>
+                prevFeeds.map(feed =>
+                    feed.id === id
+                        ? { ...feed, isLiked: true, likeCount: feed.likeCount + 1, likedByUserIds: [...feed.likedByUserIds, currentUserId] }
+                        : feed
+                )
+            );
 
         } catch (err) {
             console.log(err)
@@ -61,7 +68,14 @@ const Feed = ({ newPost, updateNewPost }) => {
             });
             const result = await response.json();
             console.log(result);
-            updateNewPost()
+            // Optimistically update the UI
+            setFeeds(prevFeeds =>
+                prevFeeds.map(feed =>
+                    feed.id === id
+                        ? { ...feed, isLiked: false, likeCount: feed.likeCount - 1, likedByUserIds: feed.likedByUserIds.filter(userId => userId !== currentUserId) }
+                        : feed
+                )
+            );
 
         } catch (err) {
             console.log(err)
@@ -80,7 +94,7 @@ const Feed = ({ newPost, updateNewPost }) => {
     return (
         <div className="w-full min-h-screen lg:py-7 sm:py-3 flex flex-col items-start gap-x-20 mt-5 pt-5 mb-5">
             <div className="w-full hidden md:block lg:block">
-<UserSearch></UserSearch>
+                <UserSearch></UserSearch>
             </div>
             <div className="w-full lg:w-[70%] h-auto relative">
                 <div className="w-full h-auto flex items-center justify-center mt-6 mb-6">
