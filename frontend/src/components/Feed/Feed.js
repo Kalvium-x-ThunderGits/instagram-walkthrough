@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FeedCard from "./FeedCard/FeedCard";
+import UserSearch from "../UserSearch/UserSearch";
 
 const Feed = ({ newPost, updateNewPost }) => {
     const API_URL = window.location.origin.replace("3000", "5000")
@@ -77,7 +78,10 @@ const Feed = ({ newPost, updateNewPost }) => {
         return () => window.addEventListener("scroll", handleScroll)
     }, [])
     return (
-        <div className="w-full min-h-screen lg:py-7 sm:py-3 flex flex-col lg:flex-row items-start gap-x-20 mt-5 pt-5 mb-5">
+        <div className="w-full min-h-screen lg:py-7 sm:py-3 flex flex-col items-start gap-x-20 mt-5 pt-5 mb-5">
+            <div className="w-full hidden md:block lg:block">
+<UserSearch></UserSearch>
+            </div>
             <div className="w-full lg:w-[70%] h-auto relative">
                 <div className="w-full h-auto flex items-center justify-center mt-6 mb-6">
                     <div className="w-full lg:w-[73%] md:w-[73%] sm:w-[80%]">
