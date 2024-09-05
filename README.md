@@ -1,36 +1,35 @@
 
-
-## **Milestone 32 - Implementing User Search - Frontend**
+## **Milestone 32 - Implementing User Search - Backend**
 
 ### **Overview**
 
-Milestone 32 focuses on the frontend implementation of user search functionality. This feature allows users to search for other users within the application, displaying relevant results based on the search query.
+Milestone 32 focuses on the backend implementation of user search functionality. This feature allows users to search for other users based on specified criteria, such as usernames or other attributes.
 
 ### **Topics Covered in Milestone 32**
 
-- **User Search Implementation**: Integrated the frontend functionality to search for users and display the search results.
-- **Frontend Testing**: Added test cases to ensure the search functionality works correctly under various scenarios.
+- **User Search Implementation**: Developed backend functionality to enable searching for users based on various criteria.
+- **Backend Testing**: Added test cases to verify the correct operation of the search functionality, including handling cases with and without search results.
 
-### **Frontend Test Cases**
+### **Backend Test Cases**
 
 The following test cases have been implemented and have passed:
 
 - **[REQ076]_search_users_successfully**
-  - Verifies that the search functionality successfully returns and displays relevant user results based on the search query.
+  - Verifies that the user search functionality returns correct results when valid search criteria are provided.
 
 - **[REQ077]_search_users_no_results**
-  - Ensures that the system correctly handles scenarios where no users match the search query, displaying an appropriate message.
+  - Ensures that the system correctly handles scenarios where no users match the search criteria.
 
-### **Running Frontend Test Cases**
+### **Running Backend Test Cases**
 
-To run the frontend test cases:
+To run the backend test cases:
 
 1. **Set Up Your Environment**
 
-   Navigate to the frontend directory and install the necessary dependencies:
+   Navigate to the backend directory and install the necessary dependencies:
    
    ```bash
-   cd frontend
+   cd backend
    npm install
    ```
 
@@ -42,7 +41,7 @@ To run the frontend test cases:
    npm run test
    ```
 
-   This command will run the frontend test cases and display the results in your terminal.
+   This command will run the backend test cases and display the results in your terminal.
 
 3. **View Test Results**
 
