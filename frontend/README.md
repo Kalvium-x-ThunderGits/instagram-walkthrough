@@ -1,68 +1,70 @@
+# Getting Started with Create React App
 
-# Milestone-31: Frontend Introducing Lazy Loading
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Overview
+## Available Scripts
 
-This milestone focuses on implementing lazy loading for posts in the frontend. The initial posts will be fetched when the component renders, and more posts will be loaded as the user scrolls to the bottom of the page.
+In the project directory, you can run:
 
-## Components and Features
+### `npm start`
 
-### 1. Lazy Loading Posts
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-- **Component:** `Posts`
-- **Description:** This component fetches and displays posts. It implements lazy loading to fetch more posts as the user scrolls down.
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-### Test Cases
+### `npm test`
 
-#### 1. Fetches Initial Posts on Component Render
-- **Test Case ID:** `REQ074_fetches_initial_posts_on_component_render`
-- **Description:** This test verifies that the initial set of posts is fetched when the `Posts` component is rendered.
-- **Steps:**
-  1. Render the `Posts` component.
-  2. Verify that the initial posts are fetched and displayed.
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-#### 2. Loads More Posts When Scrolled to Bottom
-- **Test Case ID:** `REQ075_loads_more_posts_when_scrolled_to_bottom`
-- **Description:** This test verifies that more posts are fetched and loaded as the user scrolls to the bottom of the page.
-- **Steps:**
-  1. Render the `Posts` component with initial posts.
-  2. Simulate scrolling to the bottom of the page.
-  3. Verify that additional posts are fetched and displayed.
+### `npm run build`
 
-## Setup and Installation
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-repo.git
-   ```
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-3. Set up environment variables:
-   - Create a `.env` file in the root directory.
-   - Add your necessary environment variables for the frontend application.
+### `npm run eject`
 
-4. Run the development server:
-   ```bash
-   npm start
-   ```
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-5. Run the tests:
-   ```bash
-   npm test
-   ```
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-## Usage
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-1. The `Posts` component will fetch the initial set of posts when it is rendered.
-2. As the user scrolls down the page and reaches the bottom, additional posts will be fetched and displayed.
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Technologies Used
+## Learn More
 
-- **React**: Frontend library for building user interfaces.
-- **Redux**: State management for handling posts and lazy loading state.
-- **Jest**: Testing framework for writing and running test cases.
-- **React Testing Library**: Utility for testing React components.
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
